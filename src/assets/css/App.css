@@ -1,3 +1,18 @@
 /* Main CSS file */
 
 @import '_example/_example.css';
+
+.selectable {
+  cursor: pointer;
+}
+
+.selectable:hover {
+  background: #90fffd;
+}
+
+.company-block {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
