@@ -43,12 +43,14 @@
     "postpackage": "electron-packager ./ --out=./builds"
   },
   "dependencies": {
+    "cubic-spline": "^1.0.4",
     "electron": "^3.0.6",
     "prop-types": "^15.6.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-modal": "^3.6.1",
-    "react-search-input": "^0.11.3"
+    "react-search-input": "^0.11.3",
+    "regression": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
