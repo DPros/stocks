@@ -46,7 +46,7 @@ class CompanyInfoModal extends React.Component {
                 {this.evsPrice()}
               </td>
               <td></td>
-              <td></td>
+              <td>{this.pePrice()}</td>
               <td></td>
             </tr>
             </tbody>
@@ -61,6 +61,15 @@ class CompanyInfoModal extends React.Component {
     const totalMarketRevenue = this.props.allCompanies.map(company => company.financials[3].totalRevenue).reduce((prev, curr) => prev + curr);
     const avgEvs = this.props.allCompanies.map(company => company.financials[3].evs * company.financials[3].totalRevenue / totalMarketRevenue).reduce((prev, curr) => prev + curr);
     const multPrice = (avgEvs * this.props.company.financials[3].totalRevenue - this.props.company.financials[3].totalDebt) / this.props.company.stats.sharesOutstanding;
+    const stockPrice = this.state.prices[this.props.company.symbol].price;
+    const change = multPrice === stockPrice ? 0 : ((multPrice - stockPrice) / stockPrice * 100).toFixed(2);
+    return multPrice.toFixed(2) + (' (' + (change > 0 ? '+' : '') + change + '%)')
+  }
+
+  pePrice() {
+    const totalMarketRevenue = this.props.allCompanies.map(company => company.financials[3].totalRevenue).reduce((prev, curr) => prev + curr);
+    const avgPe = this.props.allCompanies.map(company => company.financials[3].pe * company.financials[3].totalRevenue / totalMarketRevenue).reduce((prev, curr) => prev + curr);
+    const multPrice = (avgPe * this.props.company.financials[3].netIncome) / this.props.company.stats.sharesOutstanding;
     const stockPrice = this.state.prices[this.props.company.symbol].price;
     const change = multPrice === stockPrice ? 0 : ((multPrice - stockPrice) / stockPrice * 100).toFixed(2);
     return multPrice.toFixed(2) + (' (' + (change > 0 ? '+' : '') + change + '%)')
